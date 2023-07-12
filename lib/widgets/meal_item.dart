@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:meals_app/screens/meal_details.screen.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 import '../models/meals.model.dart';
@@ -14,10 +15,16 @@ class MealItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: const EdgeInsets.all(12),
       elevation: 2,
       child: InkWell(
-        onTap: (){},
+        onTap: (){
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (ctx) => MealDetailsScreen(meal)
+              )
+          );
+        },
         child: Stack(
           children: [
             FadeInImage(

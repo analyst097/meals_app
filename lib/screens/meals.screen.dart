@@ -17,7 +17,7 @@ class MealsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     Widget content;
     if(meals.isEmpty){
-      content = const Center(child: Text("No Meals."),);
+      content = const Center(child: Text("Nothing here."),);
     } else {
       content = ListView.builder(
           itemCount: meals.length,
