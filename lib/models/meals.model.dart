@@ -41,3 +41,26 @@ class Meal {
   final bool isVegan;
   final bool isVegetarian;
 }
+
+
+class MealCategory{
+  MealCategory({
+    required this.idCategory,
+    required this.strCategory,
+    required this.strCategoryDescription,
+    required this.strCategoryThumb,
+  });
+
+  final String idCategory;
+  final String strCategory;
+  final String strCategoryDescription;
+  final String strCategoryThumb;
+
+  factory MealCategory.fromJson(Map<String, dynamic> json){
+    return MealCategory(
+        idCategory: json["idCategory"] as String,
+        strCategory: json["strCategory"] as String,
+        strCategoryDescription: json["strCategoryDescription"] as String,
+        strCategoryThumb: json["strCategoryThumb"] as String);
+  }
+}

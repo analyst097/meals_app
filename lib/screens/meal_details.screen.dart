@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:meals_app/widgets/meal_item.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 import '../models/meals.model.dart';
@@ -12,7 +11,7 @@ class MealDetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Meal Details"),),
+      appBar: AppBar(title: const Text("Meal Details"),),
       body: Container(
         margin: const EdgeInsets.all(8),
         child: SingleChildScrollView(

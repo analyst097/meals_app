@@ -23,18 +23,18 @@ class _TabsScreenState extends State<TabsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    Widget _activePage = const CategoriesScreen();
-    String _activePageTitle = "Categories";
+    Widget activePage = CategoriesScreen();
+    String activePageTitle = "Categories";
     if(_activeTab == 1) {
-      _activePage = const MealsScreen(title: "Favorites", meals: []);
-      _activePageTitle = "My Favourites";
+      activePage = const MealsScreen(title: "Favorites", meals: []);
+      activePageTitle = "My Favourites";
     }
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(_activePageTitle),
+        title: Text(activePageTitle),
       ),
-      body: _activePage,
+      body: activePage,
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _activeTab,
         onTap: (index){_selectPage(index);},
