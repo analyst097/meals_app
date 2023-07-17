@@ -4,6 +4,7 @@ import 'package:meals_app/providers/categories.provider.dart';
 import 'package:meals_app/providers/favourites.provider.dart';
 import 'package:meals_app/screens/categories.screen.dart';
 import 'package:meals_app/screens/meals.screen.dart';
+import 'package:meals_app/widgets/drawer.widget.dart';
 
 class TabsScreen extends ConsumerStatefulWidget {
   const TabsScreen({super.key});
@@ -38,6 +39,9 @@ class _TabsScreenState extends ConsumerState<TabsScreen> {
         title: Text(activePageTitle),
       ),
       body: activePage,
+      drawer: const Drawer(
+        child: MainDrawer(),
+      ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _activeTab,
         onTap: (index){_selectPage(index);},
