@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:meals_app/providers/categories.provider.dart';
+import 'package:meals_app/providers/favourites.provider.dart';
 import 'package:meals_app/screens/categories.screen.dart';
 import 'package:meals_app/screens/meals.screen.dart';
 
-import '../data/data.dart';
-
-class TabsScreen extends StatefulWidget {
+class TabsScreen extends ConsumerStatefulWidget {
   const TabsScreen({super.key});
 
   @override
-  State<TabsScreen> createState() => _TabsScreenState();
+  ConsumerState<TabsScreen> createState() => _TabsScreenState();
 }
 
-class _TabsScreenState extends State<TabsScreen> {
+class _TabsScreenState extends ConsumerState<TabsScreen> {
 
   int _activeTab = 0;
 
@@ -23,10 +24,12 @@ class _TabsScreenState extends State<TabsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    Widget activePage = CategoriesScreen();
+    final allCategories = ref.watch(categoriesProvider);
+    Widget activePage = CategoriesScreen(allCategories: allCategories,);
     String activePageTitle = "Categories";
     if(_activeTab == 1) {
-      activePage = const MealsScreen(title: "Favorites", meals: []);
+      final favMeals = ref.watch(favouriteMealsProvider);
+      activePage = MealsScreen(title: "Favourites", meals: favMeals);
       activePageTitle = "My Favourites";
     }
 

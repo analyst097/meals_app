@@ -5,18 +5,17 @@ import 'package:meals_app/screens/meals.screen.dart';
 import 'package:meals_app/widgets/category_grid_item.dart';
 
 import '../data/data.dart';
-import '../models/categories.model.dart' as CategoryModels;
+import '../models/categories.model.dart';
 import '../models/meals.model.dart';
 import '../services/api.service.dart';
 
 class CategoriesScreen extends StatelessWidget {
-  CategoriesScreen({super.key});
+  CategoriesScreen({required this.allCategories, super.key});
 
-  late List<CategoryModels.Category> allCategories;
+  final List<Category> allCategories;
 
   @override
   Widget build(BuildContext context) {
-
 
     return GridView(
       padding: const EdgeInsets.all(8),
@@ -27,13 +26,13 @@ class CategoriesScreen extends StatelessWidget {
           mainAxisSpacing: 10
       ),
       children: [
-        for (final el in allCategories!)
+        for (final el in allCategories)
           CategoryGridItem(category: el, selectCategory: _selectCategory,)
       ],
     );
   }
 
-  void _selectCategory(BuildContext context, CategoryModels.Category category){
+  void _selectCategory(BuildContext context, Category category){
     final meals = dummyMeals.where((el) => el.categories.contains(category.id)).toList();
     Navigator.push(
         context, 

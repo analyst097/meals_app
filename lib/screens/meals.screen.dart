@@ -24,6 +24,13 @@ class MealsScreen extends StatelessWidget {
           itemBuilder: (ctx, index) => MealItem(meal: meals[index])
       );
     }
+    if(title.toLowerCase() == 'favourites'){
+      return Scaffold(
+        body: Container(
+            child: content
+        ),
+      );
+    }
 
     return Scaffold(
       appBar: AppBar(
