@@ -17,16 +17,28 @@ class MealDetailsScreen extends ConsumerWidget {
         title: const Text("Meal Details"),
         actions: [
           IconButton(
-              onPressed: (){
-                final isAdded = ref.read(favouriteMealsProvider.notifier)
-                    .toggleFavMealStatus(meal);
+            onPressed: () {
+              final isAdded = ref
+                  .read(favouriteMealsProvider.notifier)
+                  .toggleFavMealStatus(meal);
 
-                ScaffoldMessenger.of(context).clearSnackBars();
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text(isAdded ? 'Added to favourites' : 'Removed from favourites'))
-                );
-              },
-              icon: const Icon(Icons.star))
+              ScaffoldMessenger.of(context).clearSnackBars();
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  content: Text(isAdded
+                      ? 'Added to favourites'
+                      : 'Removed from favourites')));
+            },
+            icon: AnimatedSwitcher(
+                duration: const Duration(milliseconds: 300),
+                transitionBuilder: (child, animation) {
+                  return RotationTransition(
+                    turns: animation,
+                    key: const ValueKey(true),
+                    child: child,
+                  );
+                },
+                child: const Icon(Icons.star)),
+          )
         ],
       ),
       body: Container(
@@ -40,35 +52,37 @@ class MealDetailsScreen extends ConsumerWidget {
                   height: 200,
                   width: double.infinity,
                   fit: BoxFit.cover,
-                  placeholder: MemoryImage(kTransparentImage) ,
-                  image: NetworkImage(meal.imageUrl)
+                  placeholder: MemoryImage(kTransparentImage),
+                  image: NetworkImage(meal.imageUrl)),
+              const SizedBox(
+                height: 12,
               ),
-              const SizedBox(height: 12,),
               Container(
-                padding: const EdgeInsets.fromLTRB(0, 4, 0, 4),
+                  padding: const EdgeInsets.fromLTRB(0, 4, 0, 4),
                   child: Row(
                     children: [
                       const Text("Duration: "),
                       Text("${meal.duration} min")
                     ],
-                  )
-              ),Container(
-                padding: const EdgeInsets.fromLTRB(0, 4, 0, 4),
+                  )),
+              Container(
+                  padding: const EdgeInsets.fromLTRB(0, 4, 0, 4),
                   child: Row(
                     children: [
                       Text(meal.isVegetarian ? "Vegetarian" : "Non-vegetarian"),
                     ],
-                  )
-              ),Container(
-                padding: const EdgeInsets.fromLTRB(0, 4, 0, 4),
+                  )),
+              Container(
+                  padding: const EdgeInsets.fromLTRB(0, 4, 0, 4),
                   child: Expanded(
                     child: Row(
                       children: [
-                        Expanded(child: Text(("Ingredients: ${meal.ingredients.join(",")}")))
+                        Expanded(
+                            child: Text(
+                                ("Ingredients: ${meal.ingredients.join(",")}")))
                       ],
                     ),
-                  )
-              ),
+                  )),
             ],
           ),
         ),
