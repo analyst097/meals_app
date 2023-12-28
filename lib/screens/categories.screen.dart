@@ -10,7 +10,7 @@ import '../models/meals.model.dart';
 import '../services/api.service.dart';
 
 class CategoriesScreen extends StatelessWidget {
-  CategoriesScreen({required this.allCategories, super.key});
+  const CategoriesScreen({required this.allCategories, super.key});
 
   final List<Category> allCategories;
 
